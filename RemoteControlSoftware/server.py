@@ -17,7 +17,3 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         conn.send(command.encode())
         data = conn.recv(1024)
         print(data.decode("utf-8", "ignore"))
-        if not data:
-            break
-        conn.sendall(data)
-
