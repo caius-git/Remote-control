@@ -40,5 +40,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     while True:
         command = input(">> ")
-        data = command_execution(command)
-        print(data.decode("utf-8", "ignore"))  # decoding happens here again
+        try:
+            data = command_execution(command)
+        except Exception:
+            data = "[+] Error".encode()
+        print(data.decode("utf-8", "ignore"))
