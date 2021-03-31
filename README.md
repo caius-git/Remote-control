@@ -24,5 +24,10 @@ functionality to the program.
 Since adding the screenshot function, the program will no longer work unless the target has 
 installed the necessary dependencies. This can be avoided by compiling the program into an .exe
 using pyinstaller, though notice that the machine you compile it on also needs to have
-the necessary dependencies or it still won't work. This is explained in further detail on the
-project page.  
+the necessary dependencies or it still won't work. This is explained in further detail on the project page.
+
+
+## KNOWN BUGS
+
+- Keylogger function can't be stopped after it started unless connection is terminated with "quit" command
+- Invalid email error is not instant
