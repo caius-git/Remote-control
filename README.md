@@ -15,6 +15,8 @@ Project posts get released weekly, though changes come to github as they are mad
 - Being undetected by Windows Defender (other antivirus not tested yet)
 - Able to download/upload files to and from target
 - Taking screenshots
+- If the host is not listening, the client will retry every 5 minutes
+- Rest of the functionality can be read on the man pages down below
 
 Keep an eye out for any new releases, I typically release them after adding some important
 functionality to the program. 
