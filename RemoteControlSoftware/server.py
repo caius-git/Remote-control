@@ -5,8 +5,8 @@ import ssl
 import json
 import base64
 
-HOST = "10.0.2.7"
-PORT = 6666
+HOST = "192.168.1.103"
+PORT = 8080
 log_started = False
 
 
@@ -51,6 +51,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                             certfile="/home/caius/key_and_cert_files/cert.pem")
     wrapS.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     wrapS.bind((HOST, PORT))
+    wrapS.settimeout(None)
     wrapS.listen()
     print("[+] Listening for connections")
     conn, addr = wrapS.accept()
