@@ -50,25 +50,25 @@ Commands:
 
 Starting the keylogger:
 
-keylogger start (IMPORTANT: CANNOT BE SHUT DOWN AFTER STARTING AS OF RIGHT NOW)
+**keylogger start** (IMPORTANT: CANNOT BE SHUT DOWN AFTER STARTING AS OF RIGHT NOW)
 
 Default keylogger delivery method is through files, not email. To download the file, please use:
 
-keylogger download . If the file doesn't exist yet, the keylogger hasn't captured anything.
+**keylogger download** . If the file doesn't exist yet, the keylogger hasn't captured anything.
 
 To delete the keylogger file from the target machine, use:
 
-keylogger delete
+**keylogger delete**
 
 To change the keylogger delivery method:
 
-keylogger method (method) . Valid methods are file/email. 
+**keylogger method (method**) . Valid methods are file/email. 
 
 To change the frequency at which the keylogger updates, please use:
 
-keylogger timer (time between updates in seconds). Default timer is 15 seconds, it is recommended to change this if you're using email. 
+**keylogger timer (time between updates in seconds)**. Default timer is 15 seconds, it is recommended to change this if you're using email. 
 
 
 Email credentials:
 
-keylogger email (username) (password) . These are required in order to use the email mode.Note that depending on your email you'll have to allow less secure apps as well (gmail is an example). 
+**keylogger email (username) (password)** . These are required in order to use the email mode.Note that depending on your email you'll have to allow less secure apps as well (gmail is an example). 
