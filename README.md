@@ -1,7 +1,7 @@
 # Remote-control
 Remote control software project
 
-
+# PROJECT PAGE: https://caiusinfo.data.blog/
 
 Most of the documentation is done at caiusinfo.data.blog, which is the project page. 
 The blog posts go over all the project work being done.
