@@ -1,6 +1,9 @@
 # Remote-control
 Remote control software project
 
+# Legal disclaimer:
+This project is purely for research purposes, and you may not use it for illegal or unethical purposes. Any use outside of research is thus strictly prohibited, and the creators of the project are not responsible if you use it for anything else. 
+
 # PROJECT PAGE: https://caiusinfo.data.blog/
 
 Most of the documentation is done at caiusinfo.data.blog, which is the project page. 
